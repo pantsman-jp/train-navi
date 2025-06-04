@@ -1,5 +1,7 @@
 # train-navi / pantsman
 
+Determine if you can make it to the train on foot from your location on the Kyutech campus.
+
 ## Installation
 Download from https://github.com/pantsman-jp/train-navi
 
