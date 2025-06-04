@@ -5,37 +5,21 @@ from requests import get
 from bs4 import BeautifulSoup as bs
 
 
-def make_timetable(fname):
-    """
-    destination, daytime, hour, minute
-    destination = (hakata, kokura)
-    daytime = (weekday, saturday, holiday)
-    hour = 0 ~ 23
-    minute = 0 ~ 59
-    """
-    with open(fname, mode="a", newline="") as f:
-        print("終了は 'end' で")
-        print("形式：[hakata/kokura] [wd/st/hd] [hour] [min]")
-        while True:
-            data = list(input("destination daytime hour minute >>> ").split())
-            if data[0] == "end":
-                break
-            if len(data) != 4:
-                print("【形式エラー】再入力してください。")
-                return make_timetable(fname)
-            try:
-                writer(f).writerow(data)
-            except Exception:
-                print("【エラー】再入力してください。")
-                return make_timetable(fname)
-    print(str(fname) + " に保存しました。")
-
-
 def get_data(fname):
+    """
+    get timetable data from fname.csv
+    by pantsman
+    """
     return [xs for xs in reader(open(fname, mode="r"))]
 
 
 def search(dest, type, hour, xss=get_data("kyushukodaimae.csv")):
+    """
+    Search the timetable for train information
+    that matches the destination, time, and day of the week.
+    get all timetables after the search time
+    by pantsman
+    """
     return [
         [int(xs[2]), int(xs[3])]
         for xs in xss
@@ -44,19 +28,35 @@ def search(dest, type, hour, xss=get_data("kyushukodaimae.csv")):
 
 
 def get_hhmm():
+    """
+    get current time
+    by pantsman
+    """
     hhmm = str(datetime.now())
     return [int(hhmm[11:13]), int(hhmm[14:16])]
 
 
 def get_hour():
+    """
+    get current hour
+    by pantsman
+    """
     return get_hhmm()[0]
 
 
 def get_ymd():
+    """
+    get data [yyyy,mm,dd]
+    by pantsman
+    """
     return [int(x) for x in str(date.today()).split("-")]
 
 
 def get_type(ymd=get_ymd()):
+    """
+    get today's date type
+    by pantsman
+    """
     x = date(ymd[0], ymd[1], ymd[2])
     if is_holiday(x):
         return "hd"
@@ -99,8 +99,27 @@ def get_service_status(url="https://transit.yahoo.co.jp/diainfo/386/386"):
     return [False]
 
 
-# make_timetable("timetable.csv")
-# print(get_hhmm())
-# print(get_type())
-# print(search("kokura", get_type(), get_hour()))
-# print(is_in_time(1, "kokura"))
+# def make_timetable(fname):
+#     """
+#     destination, daytime, hour, minute
+#     destination = (hakata, kokura)
+#     daytime = (weekday, saturday, holiday)
+#     hour = 0 ~ 23
+#     minute = 0 ~ 59
+#     """
+#     with open(fname, mode="a", newline="") as f:
+#         print("終了は 'end' で")
+#         print("形式：[hakata/kokura] [wd/st/hd] [hour] [min]")
+#         while True:
+#             data = list(input("destination daytime hour minute >>> ").split())
+#             if data[0] == "end":
+#                 break
+#             if len(data) != 4:
+#                 print("【形式エラー】再入力してください。")
+#                 return make_timetable(fname)
+#             try:
+#                 writer(f).writerow(data)
+#             except Exception:
+#                 print("【エラー】再入力してください。")
+#                 return make_timetable(fname)
+#     print(str(fname) + " に保存しました。")

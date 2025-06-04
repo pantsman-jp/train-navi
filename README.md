@@ -6,7 +6,7 @@ Determine if you can make it to the train on foot from your location on the Kyut
 Download from https://github.com/pantsman-jp/train-navi
 
 ## Usage
-Require
+Require;
 - Python3.13
 - jpholiday
 - requests
