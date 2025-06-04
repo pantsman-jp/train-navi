@@ -33,5 +33,5 @@ def start_server2(debug):
     app.run(host="0.0.0.0", port=5000, debug=debug)
 
 
-start_server(debug)
-# start_server2(debug)
+# start_server(debug)
+start_server2(debug)

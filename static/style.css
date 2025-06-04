@@ -77,3 +77,28 @@ strong {
     background-color: rgb(255, 108, 108);
     padding: 0 0.2em;
 }
+
+/* モバイル対応のレスポンシブデザイン */
+@media screen and (max-width: 768px) {
+    body {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    form {
+        max-width: 100%;
+        padding: 1em;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    h3 {
+        font-size: 1.1em;
+    }
+}
