@@ -35,7 +35,7 @@ def get_data(fname):
     return [xs for xs in reader(open(fname, mode="r"))]
 
 
-def search(dest, type, hour, xss=get_data("timetable.csv")):
+def search(dest, type, hour, xss=get_data("kyushukodaimae.csv")):
     return [
         [int(xs[2]), int(xs[3])]
         for xs in xss

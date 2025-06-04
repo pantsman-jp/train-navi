@@ -1,8 +1,9 @@
 # train-navi / pantsman
 
 ## Unreleased
-- Tobata vs. Kokura / limited express vs. shinkansen
-- show fare
+- Tobata vs. Kokura / limited express(43m) vs. shinkansen(15m)
+    - show estimated arrival times and fees
+- show fees
 
 ## v0.7.0 2025-05-24
 - Changed to display all timetables after the search time
