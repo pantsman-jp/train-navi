@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block headline %}
+<h1>トレnavi（仮）</h1>
+{% endblock headline %}
+
+{% block content %}
+<h2>運行状況</h2>
+{% if status %}
+<p>鹿児島本線【門司港～大牟田】は <strong>{{ status[1] }}中</strong></p>
+<h3>詳細</h3>
+<p>{{ status[2] }}</p>
+{% else %}
+<p>運行情報の取得に失敗しました。</p>
+{% endif %}
+<a href="https://transit.yahoo.co.jp/diainfo/386/386">source</a>
+
+<h2>検索</h2>
+<form method="post">
+    <h3>今いる場所</h3>
+    <select name="place">
+        <option value="1">正門</option>
+        <option value="2">総合教育棟・図書館</option>
+        <option value="3">生協・食堂</option>
+        <option value="4">ジムラボ</option>
+        <option value="5">東門</option>
+    </select>
+    <br>
+    <h3>行き先</h3>
+    <input type="radio" name="destination" value="kokura" required>小倉方面
+    <br>
+    <input type="radio" name="destination" value="hakata" required>博多方面
+    <br>
+    <input type="submit" value="調べる">
+</form>
+{% endblock content %}
+
+{% block version %}
+{{ ver }}
+{% endblock version %}

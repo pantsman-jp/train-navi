@@ -1,0 +1,79 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 2em;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+h1 {
+    font-size: 2em;
+    color: #2c3e50;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #34495e;
+    margin-top: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-top: 1em;
+    color: #34495e;
+}
+
+form {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 8px;
+    max-width: 40%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+select,
+input[type="radio"],
+input[type="submit"] {
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+
+input[type="submit"] {
+    padding: 0.5em 1.2em;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+p {
+    line-height: 1.6;
+}
+
+strong {
+    color: #c0392b;
+}
+
+.train-walk {
+    background-color: rgb(158, 255, 158);
+    padding: 0 0.2em;
+}
+
+.train-run {
+    background-color: rgb(255, 197, 91);
+    padding: 0 0.2em;
+}
+
+.train-fail {
+    background-color: rgb(255, 108, 108);
+    padding: 0 0.2em;
+}
