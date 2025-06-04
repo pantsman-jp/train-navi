@@ -78,7 +78,6 @@ strong {
     padding: 0 0.2em;
 }
 
-/* モバイル対応のレスポンシブデザイン */
 @media screen and (max-width: 768px) {
     body {
         margin-left: 5%;
