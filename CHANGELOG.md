@@ -5,7 +5,7 @@
     - show estimated arrival times and fees
 
 ## v0.7.1 2025-06-04
-- CSS for smartphones
+- CSS for smartphone
 
 ## v0.7.0 2025-05-24
 - Changed to display all timetables after the search time

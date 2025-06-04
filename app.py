@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from functions import is_in_time, get_service_status
 
 app = Flask("TrainNavi")
-ver = "v0.7.0"
+ver = "v0.7.1"
 debug = True
 
 
@@ -33,5 +33,5 @@ def start_server2(debug):
     app.run(host="0.0.0.0", port=5000, debug=debug)
 
 
-# start_server(debug)
-start_server2(debug)
+start_server(debug)
+# start_server2(debug)
