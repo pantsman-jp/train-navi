@@ -11,7 +11,7 @@ from functions import (
 )
 
 app = Flask("TrainNavi")
-ver = "v0.8.0"
+ver = "v0.9.0"
 debug = True
 
 
