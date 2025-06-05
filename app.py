@@ -17,6 +17,7 @@ debug = True
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    print("index")
     if request.method == "POST":
         place, dest = request.form.get("place"), request.form.get("destination")
         if dest == "kokura":
@@ -28,6 +29,7 @@ def index():
 
 @app.route("/forkokura", methods=["GET"])
 def kokura():
+    print("kokura")
     place, dest = request.args.get("place"), "kokura"
     return render_template(
         "forkokura.jinja",
@@ -39,15 +41,12 @@ def kokura():
 @app.route("/forhakata", methods=["GET"])
 def hakata():
     place, dest = request.args.get("place"), "hakata"
-    timetable = is_in_time(place, dest)
-    durations_ex = get_time_ex(dest)
-    durations_shin = get_time_shin(dest)
-    arrtime = attach_all_arrival_times(timetable, durations_ex, durations_shin)
-    print(arrtime)
     return render_template(
         "forhakata.jinja",
         ver=ver,
-        timetable=arrtime,
+        timetable=attach_all_arrival_times(
+            is_in_time(place, dest), get_time_ex(dest), get_time_shin(dest)
+        ),
     )
 
 
@@ -59,5 +58,5 @@ def start_server2(debug):
     app.run(host="0.0.0.0", port=5000, debug=debug)
 
 
-start_server(debug)
-# start_server2(debug)
+# start_server(debug)
+start_server2(debug)

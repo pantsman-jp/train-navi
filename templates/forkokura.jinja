@@ -10,18 +10,16 @@
 {% for time in timetable %}
 {% if time[2] == "walk" %}
 <h3>
-    <span class="train-walk">
-    {{ time[0] }} 時 {{ time[1] }} 分の電車には歩いても間に合います。<br>
-    小倉駅到着予想時刻：{{ time[3] }} 時 {{ time[4] }} 分 （240円）
-    </span>
+    <span class="train-walk">{{ time[0] }} 時 {{ time[1] }} 分の電車には歩いても間に合います。</span>
+    <p>小倉駅到着予想時刻：{{ time[3] }} 時 {{ time[4] }} 分 （240円）</p>
 </h3>
+<br>
 {% elif time[2] == "run" %}
 <h3>
-    <span class="train-run">
-    {{ time[0] }} 時 {{ time[1] }} 分の電車には走れば間に合います。<br>
-    小倉駅到着予想時刻：{{ time[3] }} 時 {{ time[4] }} 分 （240円）
-    </span>
+    <span class="train-run">{{ time[0] }} 時 {{ time[1] }} 分の電車には走れば間に合います。</span>
+    <p>小倉駅到着予想時刻：{{ time[3] }} 時 {{ time[4] }} 分 （240円）</p>
 </h3>
+<br>
 {% else %}
 <h3><span class="train-fail">{{ time[0] }} 時 {{ time[1] }} 分の電車には間に合いません。</span></h3>
 {% endif %}

@@ -13,9 +13,11 @@ Require;
 - requests
 - beautifulsoup4
 
-Install them via pip;
+Install them via pip under venv;
 ```shell
-pip install flask jpholiday requests beautifulsoup4
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install flask jpholiday requests beautifulsoup4
 ```
 
 Run app;

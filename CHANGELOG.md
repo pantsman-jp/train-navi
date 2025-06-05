@@ -1,7 +1,10 @@
 # train-navi / pantsman
 
 ## Unreleased
-- refactor
+
+## v0.9.0 2025-06-05
+- show time and fee differences
+- change the display of results
 
 ## v0.8.0 2025-06-05
 - compare express train and shinkansen (bound for hakata)

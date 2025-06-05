@@ -108,33 +108,27 @@ def is_in_time(place, dest):
 
 
 def get_time_ex(dest="hakata"):
-    local_list = search(dest)
-    express_list = search(dest, timetable=get_data("tobata_express.csv"))
     times = []
-    for local_time in local_list:
+    for local_time in search(dest):
         local_dep = minutize(local_time)
         transfer_arrival = local_dep + 2
-        for express_time in express_list:
+        for express_time in search(dest, timetable=get_data("tobata_express.csv")):
             express_dep = minutize(express_time)
             if express_dep >= transfer_arrival:
-                total_time = express_dep + 43 - local_dep
-                times.append(total_time)
+                times.append(express_dep + 43 - local_dep)
                 break
     return times
 
 
 def get_time_shin(dest="hakata"):
-    local_list = search(dest)
-    express_list = search(dest, timetable=get_data("kokura_shinkansen.csv"))
     times = []
-    for local_time in local_list:
+    for local_time in search(dest):
         local_dep = minutize(local_time)
         transfer_arrival = local_dep + 5
-        for express_time in express_list:
+        for express_time in search(dest, timetable=get_data("kokura_shinkansen.csv")):
             express_dep = minutize(express_time)
             if express_dep >= transfer_arrival:
-                total_time = express_dep + 15 - local_dep
-                times.append(total_time)
+                times.append(express_dep + 15 - local_dep)
                 break
     return times
 
