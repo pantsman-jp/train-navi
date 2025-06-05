@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block headline %}
+<h1>結果</h1>
+{% endblock headline %}
+
+{% block content %}
+<p>博多方面</p>
+
+{% for time in timetable %}
+{% if time[2] == "walk" %}
+<h3>
+    <span class="train-walk">
+    {{ time[0] }} 時 {{ time[1] }} 分の電車には歩いても間に合います。<br>
+    博多駅到着予想時刻<br>
+    特急利用（戸畑駅経由）{{ time[3] }} 時 {{ time[4] }} 分（2,110円）<br>
+    新幹線利用（小倉駅経由）{{ time[5] }} 時 {{ time[6] }} 分（2,400円）
+    </span>
+</h3>
+{% elif time[2] == "run" %}
+<h3>
+    <span class="train-run">
+    {{ time[0] }} 時 {{ time[1] }} 分の電車には走れば間に合います。<br>
+    博多駅到着予想時刻<br>
+    特急利用（戸畑駅経由）{{ time[3] }} 時 {{ time[4] }} 分（2,110円）<br>
+    新幹線利用（小倉駅経由）{{ time[5] }} 時 {{ time[6] }} 分（2,400円）
+    </span>
+</h3>
+{% else %}
+<h3><span class="train-fail">{{ time[0] }} 時 {{ time[1] }} 分の電車には間に合いません。</span></h3>
+{% endif %}
+{% endfor %}
+<a href="/">戻る</a>
+{% endblock content %}
+
+{% block version %}
+{{ ver }}
+{% endblock version%}

@@ -1,8 +1,11 @@
 # train-navi / pantsman
 
 ## Unreleased
-- Tobata vs. Kokura: express(43m) vs. shinkansen(15m)
-    - show estimated arrival times and fees
+- refactor
+
+## v0.8.0 2025-06-05
+- compare express train and shinkansen (bound for hakata)
+- show arrival time and fees
 
 ## v0.7.1 2025-06-04
 - CSS for smartphone

@@ -13,37 +13,6 @@ def get_data(fname):
     return [xs for xs in reader(open(fname, mode="r"))]
 
 
-def search(dest, type, hour, xss=get_data("kyushukodaimae.csv")):
-    """
-    Search the timetable for train information
-    that matches the destination, time, and day of the week.
-    get all timetables after the search time
-    by pantsman
-    """
-    return [
-        [int(xs[2]), int(xs[3])]
-        for xs in xss
-        if (xs[0] == dest) and (xs[1] == type) and (hour <= int(xs[2]))
-    ]
-
-
-def get_hhmm():
-    """
-    get current time
-    by pantsman
-    """
-    hhmm = str(datetime.now())
-    return [int(hhmm[11:13]), int(hhmm[14:16])]
-
-
-def get_hour():
-    """
-    get current hour
-    by pantsman
-    """
-    return get_hhmm()[0]
-
-
 def get_ymd():
     """
     get data [yyyy,mm,dd]
@@ -68,8 +37,58 @@ def get_type(ymd=get_ymd()):
     return "hd"
 
 
+def get_hhmm():
+    """
+    get current time
+    by pantsman
+    """
+    hhmm = str(datetime.now())
+    return [int(hhmm[11:13]), int(hhmm[14:16])]
+
+
+def get_hour():
+    """
+    get current hour
+    by pantsman
+    """
+    return get_hhmm()[0]
+
+
+def search(
+    dest, type=get_type(), hour=get_hour(), timetable=get_data("kyushukodaimae.csv")
+):
+    """
+    Search the timetable for train information
+    that matches the destination, time, and day of the week.
+    get all timetables after the search time
+    by pantsman
+    """
+    return [
+        [int(xs[2]), int(xs[3])]
+        for xs in timetable
+        if (xs[0] == dest) and (xs[1] == type) and (hour <= int(xs[2]))
+    ]
+
+
 def minutize(hhmm):
     return hhmm[0] * 60 + hhmm[1]
+
+
+def add_min(hhmm, m):
+    """
+    >>> add_min([12,34],20)
+    [12, 54]
+    >>> add_min([13,55],7)
+    [14, 2]
+    >>> add_min([24,00],66)
+    [25, 6]
+    """
+    total_minutes = hhmm[0] * 60 + hhmm[1] + m
+    return [total_minutes // 60, total_minutes % 60]
+
+
+def calc_arrtime(timetable, m):
+    return [add_min(xs[:2], m) for xs in timetable]
 
 
 def is_in_time(place, dest):
@@ -86,6 +105,53 @@ def is_in_time(place, dest):
         else:
             row.append("fail")
     return tt
+
+
+def get_time_ex(dest="hakata"):
+    local_list = search(dest)
+    express_list = search(dest, timetable=get_data("tobata_express.csv"))
+    times = []
+    for local_time in local_list:
+        local_dep = minutize(local_time)
+        transfer_arrival = local_dep + 2
+        for express_time in express_list:
+            express_dep = minutize(express_time)
+            if express_dep >= transfer_arrival:
+                total_time = express_dep + 43 - local_dep
+                times.append(total_time)
+                break
+    return times
+
+
+def get_time_shin(dest="hakata"):
+    local_list = search(dest)
+    express_list = search(dest, timetable=get_data("kokura_shinkansen.csv"))
+    times = []
+    for local_time in local_list:
+        local_dep = minutize(local_time)
+        transfer_arrival = local_dep + 5
+        for express_time in express_list:
+            express_dep = minutize(express_time)
+            if express_dep >= transfer_arrival:
+                total_time = express_dep + 15 - local_dep
+                times.append(total_time)
+                break
+    return times
+
+
+def attach_all_arrival_times(timetable, durations_ex, durations_shin):
+    length = min(len(timetable), len(durations_ex), len(durations_shin))
+    result = []
+    for i in range(length):
+        hh, mm, fail = timetable[i]
+        hh1, mm1 = add_min([hh, mm], durations_ex[i])
+        hh2, mm2 = add_min([hh, mm], durations_shin[i])
+        result.append([hh, mm, fail, hh1, mm1, hh2, mm2])
+    return result
+
+
+def merge(xss, yss):
+    return [list(xy[0] + xy[1]) for xy in zip(xss, yss)]
 
 
 def get_service_status(url="https://transit.yahoo.co.jp/diainfo/386/386"):

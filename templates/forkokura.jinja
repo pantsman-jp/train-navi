@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block headline %}
+<h1>結果</h1>
+{% endblock headline %}
+
+{% block content %}
+<p>小倉方面</p>
+
+{% for time in timetable %}
+{% if time[2] == "walk" %}
+<h3>
+    <span class="train-walk">
+    {{ time[0] }} 時 {{ time[1] }} 分の電車には歩いても間に合います。<br>
+    小倉駅到着予想時刻：{{ time[3] }} 時 {{ time[4] }} 分 （240円）
+    </span>
+</h3>
+{% elif time[2] == "run" %}
+<h3>
+    <span class="train-run">
+    {{ time[0] }} 時 {{ time[1] }} 分の電車には走れば間に合います。<br>
+    小倉駅到着予想時刻：{{ time[3] }} 時 {{ time[4] }} 分 （240円）
+    </span>
+</h3>
+{% else %}
+<h3><span class="train-fail">{{ time[0] }} 時 {{ time[1] }} 分の電車には間に合いません。</span></h3>
+{% endif %}
+{% endfor %}
+<a href="/">戻る</a>
+{% endblock content %}
+
+{% block version %}
+{{ ver }}
+{% endblock version%}
