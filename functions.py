@@ -1,5 +1,5 @@
 from csv import writer, reader
-from datetime import datetime, date
+from datetime import datetime, date, timezone, timedelta
 from jpholiday import is_holiday
 from requests import get
 from bs4 import BeautifulSoup as bs
@@ -42,7 +42,7 @@ def get_hhmm():
     get current time
     by pantsman
     """
-    hhmm = str(datetime.now())
+    hhmm = str(datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=9))))
     return [int(hhmm[11:13]), int(hhmm[14:16])]
 
 

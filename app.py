@@ -11,7 +11,7 @@ from functions import (
 )
 
 app = Flask("TrainNavi")
-ver = "v0.9.0"
+ver = "v0.9.1"
 debug = True
 
 
@@ -55,8 +55,9 @@ def start_server(debug):
 
 
 def start_server2(debug):
+    """watch out port number!!"""
     app.run(host="0.0.0.0", port=5050, debug=debug)
 
 
-# start_server(debug)
-start_server2(debug)
+start_server(debug)
+# start_server2(debug)

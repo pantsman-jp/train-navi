@@ -11,11 +11,13 @@
 
 <body>
     {% block headline %}{% endblock headline %}
+    <h3 id="current-time"></h3>
     {% block content %}{% endblock content %}
     <br><hr>
     <footer>
         programmed by pantsman | {% block version %}{% endblock version %}
     </footer>
+    <script src="/static/main.js"></script>
 </body>
 
 </html>
