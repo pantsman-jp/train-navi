@@ -21,7 +21,6 @@ make build
 ```shell
 make run
 ```
-Then open your browser and visit <http://localhost:5050> to see the app.
 
 
 ## License
