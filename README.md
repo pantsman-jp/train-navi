@@ -5,7 +5,7 @@ This app
 - assist in determining whether to take the Shinkansen or the limited express to Hakata
 
 ## Installation
-Download from https://github.com/pantsman-jp/train-navi
+Download from <https://github.com/pantsman-jp/train-navi>
 
 ## Usage
 ### Require
@@ -21,7 +21,6 @@ make build
 ```shell
 make run
 ```
-
 
 ## License
 Copyright © 2025 pantsman
