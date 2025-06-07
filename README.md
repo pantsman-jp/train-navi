@@ -1,30 +1,28 @@
 # train-navi / pantsman
 
-Determine if you can make it to the train on foot from your location on the Kyutech campus.
+This app
+- determine if you can make it to the train on foot from your location on the Kyutech campus.
+- assist in determining whether to take the Shinkansen or the limited express to Hakata
 
 ## Installation
 Download from https://github.com/pantsman-jp/train-navi
 
 ## Usage
-Require;
-- Python3.13
-- flask
-- jpholiday
-- requests
-- beautifulsoup4
+### Require
+- Docker
+- Make
 
-Install them via pip under venv;
+### Build Docker image
 ```shell
-$ python3 -m venv venv
-$ source venv/bin/activate
-$ pip install flask jpholiday requests beautifulsoup4
+make build
 ```
 
-Run app;
+### Run app
 ```shell
-python3 app.py
+make run
 ```
+Then open your browser and visit <http://localhost:5050> to see the app.
+
 
 ## License
-
 Copyright © 2025 pantsman

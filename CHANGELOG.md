@@ -1,6 +1,7 @@
 # train-navi / pantsman
 
 ## Unreleased
+- analog clock
 - **waiting for request!**
 
 ## v0.9.1 (2025-06-05)

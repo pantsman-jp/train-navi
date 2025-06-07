@@ -51,13 +51,12 @@ def hakata():
 
 
 def start_server(debug):
-    app.run(host="localhost", port=5000, debug=debug)
+    app.run(host="localhost", port=5050, debug=debug)
 
 
 def start_server2(debug):
-    """watch out port number!!"""
     app.run(host="0.0.0.0", port=5050, debug=debug)
 
 
-start_server(debug)
-# start_server2(debug)
+# start_server(debug)
+start_server2(debug)
