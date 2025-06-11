@@ -4,6 +4,9 @@
 - analog clock
 - **waiting for request!**
 
+## v0.9.2 (2025-06-11)
+- show　price of "九州ネットきっぷ”
+
 ## v0.9.1 (2025-06-05)
 - fix time issue
     - first get in UTC and then convert back to JST

@@ -11,7 +11,7 @@ from functions import (
 )
 
 app = Flask("TrainNavi")
-ver = "v0.9.1"
+ver = "v0.9.2"
 debug = True
 
 
@@ -51,12 +51,7 @@ def hakata():
 
 
 def start_server(debug):
-    app.run(host="localhost", port=5050, debug=debug)
-
-
-def start_server2(debug):
     app.run(host="0.0.0.0", port=5050, debug=debug)
 
 
-# start_server(debug)
-start_server2(debug)
+start_server(debug)

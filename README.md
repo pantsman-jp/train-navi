@@ -13,12 +13,12 @@ Download from <https://github.com/pantsman-jp/train-navi>
 - Make
 
 ### Build Docker image
-```shell
+```
 make build
 ```
 
 ### Run app
-```shell
+```
 make run
 ```
 
