@@ -1,11 +1,11 @@
-# train-navi / pantsman
+# Train-Navi / pantsman
 
 ## Unreleased
 - analog clock
 - **waiting for request!**
 
 ## v0.9.2 (2025-06-11)
-- show　price of "九州ネットきっぷ”
+- show price of "九州ネットきっぷ”
 
 ## v0.9.1 (2025-06-05)
 - fix time issue
