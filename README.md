@@ -5,22 +5,35 @@ This app
 - assist in determining whether to take the Shinkansen or the limited express to Hakata.
 
 ## Installation
-Download from <https://github.com/pantsman-jp/Train-Navi>
+Download from <https://github.com/pantsman-jp/train-navi>
 
 ## Usage
 ### Require
-- Docker
+- Python 3.14+
+- uv
+- pip
 - Make
+- Docker (optional)
+
+### Install dependencies
+```
+make install
+```
+
+### Run app locally
+```
+make run-local
+```
 
 ### Build Docker image
 ```
 make build
 ```
 
-### Run app
+### Run app with Docker
 ```
 make run
 ```
 
 ## License
-Copyright © 2025 pantsman
+Copyright © 2025-2026 [@pantsman](https://github.com/pantsman-jp)

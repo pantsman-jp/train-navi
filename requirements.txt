@@ -1,0 +1,4 @@
+Flask
+jpholiday
+requests
+beautifulsoup4

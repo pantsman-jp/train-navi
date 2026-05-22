@@ -2,8 +2,9 @@ FROM python:3.13.4
 
 WORKDIR /app
 
+COPY requirements.txt /app
+RUN pip install -r requirements.txt
+
 COPY . /app
 
-RUN pip install flask jpholiday requests beautifulsoup4
-
-CMD ["python", "app.py"]
+CMD ["python", "-m", "app"]

@@ -1,0 +1,44 @@
+from flask import render_template, request, redirect, url_for
+from .services.timetable import (
+    is_in_time,
+    get_service_status,
+    merge,
+    search,
+    calc_arrtime,
+    get_time_ex,
+    get_time_shin,
+    attach_all_arrival_times,
+)
+
+ver = "v0.9.2"
+
+
+def register_routes(app):
+    @app.route("/", methods=["GET", "POST"])
+    def index():
+        if request.method == "POST":
+            place, dest = request.form.get("place"), request.form.get("destination")
+            if dest == "kokura":
+                return redirect(url_for("kokura", place=place))
+            return redirect(url_for("hakata", place=place))
+        return render_template("index.jinja", ver=ver, status=get_service_status())
+
+    @app.route("/forkokura", methods=["GET"])
+    def kokura():
+        place, dest = request.args.get("place"), "kokura"
+        return render_template(
+            "forkokura.jinja",
+            ver=ver,
+            timetable=merge(is_in_time(place, dest), calc_arrtime(search(dest), 5)),
+        )
+
+    @app.route("/forhakata", methods=["GET"])
+    def hakata():
+        place, dest = request.args.get("place"), "hakata"
+        return render_template(
+            "forhakata.jinja",
+            ver=ver,
+            timetable=attach_all_arrival_times(
+                is_in_time(place, dest), get_time_ex(dest), get_time_shin(dest)
+            ),
+        )

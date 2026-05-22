@@ -1,68 +1,44 @@
-from csv import writer, reader
 from datetime import datetime, date, timezone, timedelta
+from .csv_loader import get_data
 from jpholiday import is_holiday
 from requests import get
 from bs4 import BeautifulSoup as bs
 
 
-def get_data(fname):
-    """
-    get timetable data from fname.csv
-    by pantsman
-    """
-    return [xs for xs in reader(open(fname, mode="r"))]
-
-
 def get_ymd():
-    """
-    get data [yyyy,mm,dd]
-    by pantsman
-    """
     return [int(x) for x in str(date.today()).split("-")]
 
 
-def get_type(ymd=get_ymd()):
-    """
-    get today's date type
-    by pantsman
-    """
+def get_type(ymd=None):
+    if ymd is None:
+        ymd = get_ymd()
     x = date(ymd[0], ymd[1], ymd[2])
     if is_holiday(x):
         return "hd"
-    type = x.weekday()
-    if type <= 4:
+    weekday = x.weekday()
+    if weekday <= 4:
         return "wd"
-    if type == 5:
+    if weekday == 5:
         return "st"
     return "hd"
 
 
 def get_hhmm():
-    """
-    get current time
-    by pantsman
-    """
     hhmm = str(datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=9))))
     return [int(hhmm[11:13]), int(hhmm[14:16])]
 
 
 def get_hour():
-    """
-    get current hour
-    by pantsman
-    """
     return get_hhmm()[0]
 
 
-def search(
-    dest, type=get_type(), hour=get_hour(), timetable=get_data("kyushukodaimae.csv")
-):
-    """
-    Search the timetable for train information
-    that matches the destination, time, and day of the week.
-    get all timetables after the search time
-    by pantsman
-    """
+def search(dest, type=None, hour=None, timetable=None):
+    if type is None:
+        type = get_type()
+    if hour is None:
+        hour = get_hour()
+    if timetable is None:
+        timetable = get_data("kyushukodaimae.csv")
     return [
         [int(xs[2]), int(xs[3])]
         for xs in timetable
@@ -75,14 +51,6 @@ def minutize(hhmm):
 
 
 def add_min(hhmm, m):
-    """
-    >>> add_min([12,34],20)
-    [12, 54]
-    >>> add_min([13,55],7)
-    [14, 2]
-    >>> add_min([24,00],66)
-    [25, 6]
-    """
     total_minutes = hhmm[0] * 60 + hhmm[1] + m
     return [total_minutes // 60, total_minutes % 60]
 
@@ -149,7 +117,6 @@ def merge(xss, yss):
 
 
 def get_service_status(url="https://transit.yahoo.co.jp/diainfo/386/386"):
-    """[reference](https://qiita.com/hirohiroto522/items/6ff29be1344be805ecb0)"""
     response = get(url)
     response.encoding = response.apparent_encoding
     soup = bs(response.text, "html.parser")
@@ -157,29 +124,3 @@ def get_service_status(url="https://transit.yahoo.co.jp/diainfo/386/386"):
     if (dt and dd) and dd.p:
         return [True, dt.get_text(strip=True), dd.p.get_text(strip=True)]
     return [False]
-
-
-# def make_timetable(fname):
-#     """
-#     destination, daytime, hour, minute
-#     destination = (hakata, kokura)
-#     daytime = (weekday, saturday, holiday)
-#     hour = 0 ~ 23
-#     minute = 0 ~ 59
-#     """
-#     with open(fname, mode="a", newline="") as f:
-#         print("終了は 'end' で")
-#         print("形式：[hakata/kokura] [wd/st/hd] [hour] [min]")
-#         while True:
-#             data = list(input("destination daytime hour minute >>> ").split())
-#             if data[0] == "end":
-#                 break
-#             if len(data) != 4:
-#                 print("【形式エラー】再入力してください。")
-#                 return make_timetable(fname)
-#             try:
-#                 writer(f).writerow(data)
-#             except Exception:
-#                 print("【エラー】再入力してください。")
-#                 return make_timetable(fname)
-#     print(str(fname) + " に保存しました。")

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Train-Navi</title>
     <link rel="icon" href="https://bsoza.com/wp/wp-content/uploads/images/icon/icon_train_09_o.png" type="image/png">
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -17,7 +17,7 @@
     <footer>
         programmed by pantsman | {% block version %}{% endblock version %}
     </footer>
-    <script src="/static/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 
 </html>
