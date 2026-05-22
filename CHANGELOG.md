@@ -1,8 +1,13 @@
 # Train-Navi / pantsman
 
 ## Unreleased
-- analog clock
-- **waiting for request!**
+- no changes yet
+
+## v0.9.3 (2026-05-22)
+- add analog clock display with digital JST time below it
+- fix static asset references to use Flask `url_for('static', ...)`
+- move timetable CSV files into `data/`
+- add `requirements.txt` and local run target `make run-local`
 
 ## v0.9.2 (2025-06-11)
 - show price of "九州ネットきっぷ”

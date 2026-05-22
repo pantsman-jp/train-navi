@@ -10,7 +10,7 @@ from .services.timetable import (
     attach_all_arrival_times,
 )
 
-ver = "v0.9.2"
+ver = "v0.9.3"
 
 
 def register_routes(app):

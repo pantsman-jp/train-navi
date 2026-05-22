@@ -11,7 +11,28 @@
 
 <body>
     {% block headline %}{% endblock headline %}
-    <h3 id="digital-clock"></h3>
+    <div id="clock-container">
+        <div class="clock" aria-label="Analog clock">
+            <div class="dial">
+                <span style="--i:0"></span>
+                <span style="--i:1"></span>
+                <span style="--i:2"></span>
+                <span style="--i:3"></span>
+                <span style="--i:4"></span>
+                <span style="--i:5"></span>
+                <span style="--i:6"></span>
+                <span style="--i:7"></span>
+                <span style="--i:8"></span>
+                <span style="--i:9"></span>
+                <span style="--i:10"></span>
+                <span style="--i:11"></span>
+            </div>
+            <div id="hour-hand" class="hand hour"></div>
+            <div id="minute-hand" class="hand minute"></div>
+            <div id="second-hand" class="hand second"></div>
+        </div>
+        <div id="digital-clock" class="digital-clock"></div>
+    </div>
     {% block content %}{% endblock content %}
     <br><hr>
     <footer>
